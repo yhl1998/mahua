@@ -1,0 +1,1327 @@
+##Chapter2: Libraries installation
+###2.1 Required library introduction
+Before learning to use the library, there are some preparations to be completed to ensure the correct use of the library. First of all, the library was written in Python 3. To ensure that the code works correctly, please use Python 3. Since the library is designed to help users process medical images easilier rather than create new ways to process them, we've written with reference to some existing open source libraries, so you need to make sure that you install those libraries on your computer before using them, including: Numpy, Pillow, Matplotlib SimpleITK, VTK, pymesh.
+
+Among them, Numpy, Pillow, Matplotlib are more basic and common Python function libraries, which will not be described in detail in the next introduction, while SimpleITK, VTK, which are more focused on medical image processing, and pymesh, which is used in surface processing library, will focus on explanation.
+
+In addition, since ways of installing libraries in OS X system are similar to those in Linux, they will no longer be explained separately.
+
+
+###2.2 Installation in Linux system.
+####2.2.1 Numpy
+
+First of all, for Linux users, PIP installation is relatively simple, installation package version is relatively new, is a more concise way to install.
+This operation requires only one line of code:
+ 
+* `sudo pip install numpy    `
+
+Second, you can download the source code to install on the official website：
+
+* `wget https://sourceforge.net/projects/numpy/files/latest/download  `
+
+Decompression source package： 
+
+* `unzip numpy-1.9.0.zip`
+
+Enter decompress directory： 
+
+*  `cd numpy-1.9.0`
+
+
+Run the setup.py file in the decompressed directory:
+
+* `python setup.py install`
+
+
+####2.2.2 Pillow
+
+The library can also be installed directly with PIP：
+
+* `sudo pip install pillow== version number  `
+
+
+Or you can try:
+
+
+* `sudo pip install -I --no-cache-dir -v Pillow`
+
+
+####2.2.3 Matplotlib
+
+Similarly, PIP installation is still feasible：
+
+
+* `sudo pip install matplotlib  `
+
+Or you can try to download the source installation package and install it as we introduced in 2.2.1,
+Source download website：<https://sourceforge.net/projects/matplotlib/files/matplotlib/>
+
+Later versions of Python's installation of Matplotlib may require some dependency libraries, which can be solved by referring to the following code：
+
+* `sudo apt-get install libfreetype6-dev g++`
+
+####2.2.4 SimpleITK
+The installation of SimpleITK under Linux is very simple. Even the official website recommends PIP installation. The code is as follows：
+
+* `sudo pip install SimpleITK  `
+
+You can also use some software to build the environment, such as Anaconda and so on.            
+
+####2.2.5 VTK
+
+The simple installation method is to use PIP and other non-compilation installation. The code is as follows：
+
+* `sudo pip install vtk  `
+
+or：
+
+* `sudo apt-get install python-vtk`
+
+The above two ways will achieve the same effect.
+If you already have a good foundation of cmake etc. on your computer, VTK installation can also be compiled and installed using basic software such as g++ or cmake. Take cmake as an example：
+
+First download VTK：<http://www.vtk.org/download>
+
+Unzip the file to the path you want：
+
+* `sudo unzip VTK-7.0.0.zip  `
+
+Preparing compiled file directory：
+
+* 
+```
+mkdir VTK_BULD
+cd VTK_BULD
+ccmake ../VTK/VTK-7.0.0
+```
+
+implement make
+
+* `sudo make`
+
+Install：
+
+* `	sudo make install`
+
+###2.3 Installation in Windows system
+####2.3.1 Numpy
+
+In Windows system, PIP installation is also a very simple method：
+
+* `	pip install numpy `
+
+*.whl file download installation is also feasible, but it is more troublesome than PIP installation：
+
+Download Numpy：<https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>
+
+![1](C:\Users\A\Desktop\app\01.jpg)
+
+Select the appropriate version to download and use the cd command to open the download directory at the command line window, and enter the code：
+
+* `pip install filename .whl   `
+
+The command line window will give hints after installation is completed.
+
+####2.3.2 Pillow
+
+PIP installation：
+
+* ` pip install pillow  `
+
+Or the same as Numpy, download the *.whl file to install, download website:
+
+<https://www.lfd.uci.edu/~gohlke/pythonlibs/#pillow>
+
+![2](C:\Users\A\Desktop\app\02.jpg)
+
+The rest of the operations are the same as installing Numpy.
+
+####2.3.3 Matplotlib
+
+PIP installation：
+
+* ` pip install matplotlib  `
+
+Like Numpy, Matplotlib can download *.whl files . Download website: 
+<https://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib>
+
+![3](C:\Users\A\Desktop\app\03.jpg)
+
+The rest of the operations are the same as installing Numpy.
+
+####2.3.4 SimpleITK
+
+PIP installation：
+
+* ` pip install SimpleITK  `
+
+or：
+
+* `python -m pip install SimpleITK  `
+
+Or go to the official website to download *.whl files：
+
+<http://www.simpleitk.org/SimpleITK/resources/software.html>
+
+![4](C:\Users\A\Desktop\app\04.jpg)
+
+Then install the same steps as installing Numpy.。
+
+
+####2.3.5 VTK
+
+PIP installation
+
+* `    pip install vtk  `
+
+*.whl file download & installation：
+<https://www.lfd.uci.edu/~gohlke/pythonlibs/#vtk>
+
+![5](C:\Users\A\Desktop\app\05.jpg)
+
+Then enter the download directory, start the command line window, enter the command：
+
+* `  pip install package_name  `
+
+Complete installation.
+
+###2.4 Installation of pymesh
+
+The creator has already explained in more detail in the manual, and there is no other specially optimized installation method for now. Here is the site of the installation introduction:
+<https://pymesh.readthedocs.io/en/latest/installation.html>
+
+The installation can be completed according to the guidance method.
+
+
+###2.5 Summary
+
+The above is the installation method of the medical image processing dependency library, of course, there are many different means to achieve installation, not all listed, the above is a more common means. In addition, after you install successfully, don't forget to import various libraries in Python to make sure they can be used, so as not to cause errors when using this library function.
+
+##Chapter3 Medical image format operations
+
+
+Medical images have different file formats than ordinary digital images because of their particularity. Typical medical image formats include DICOM image format, MHD image format, Nii image format, Nrrd image format, and so on.
+
+This chapter mainly implements SimpleITK library to convert the MDH file format into the Nii file format and the Nrrd file format.
+
+###3.1 File format introduction:
+
+####MHD file format
+
+
+Graphics file type. The mhd file extension seems to be mostly related to MetaImage format, a text-based tagged file format for medical images. It is a special picture format used in the Insight Segmentation and Registration Toolkit and probably other graphic visualization software that are used in medicine.
+
+####Nii file format
+
+The nii file extension is used for the NIfTI-1 Data Format, which is used for the neuroimaging purposes. The NIfTI-1 is adapted from the widely used ANALYZE 7.5 data file format. This nii 
+
+
+####Nrrd file format
+
+The nrrd file extension is associated with the Nearly Raw Raster Data file format that supports scientific visualization and image processing involving N-dimensional raster data.
+
+
+
+####3.2 Source code:
+
+```
+1.    #!/usr/bin/env python  
+2.	# -*- coding: UTF-8 -*-  
+3.	""" 
+4.	Script Name   : ReadMhd_WriteOther 
+5.	Author        : ZengXiao 
+6.	Created       : 2018/4/5 
+7.	Modified      : 2018/4/7 
+8.	Version       : 2.0 
+9.	Description   : 
+10.	PURPOSE： 
+11.	    Convert Mhd to nii and nrrd format. 
+12.	 
+13.	INPUTS: 
+14.	    path: The path of the file which to be converted. 
+15.	        Type of data: str 
+16.	    my_format: The format we want to convert to. 
+17.	        Type of data: str 
+18.	 
+19.	RETURNED VALUE: 
+20.	    The converted file named 'result' in the same path. 
+21.	 
+22.	Modified : 
+23.	    Add notes and rewritten the nodes as function. 
+24.	 
+25.	"""  
+26.	import SimpleITK as sitk  
+27.	  
+28.	  
+29.	def format_conv(path, my_format):  
+30.	    # Define function format_conv  
+31.	    src = sitk.ReadImage(path)                  # Call SimpleITK to read the image  
+32.	    img_array = sitk.GetArrayFromImage(src)     # Convert image to array  
+33.	    img = sitk.GetImageFromArray(img_array)     # Convert array to image  
+34.	  
+35.	    # Get the path the file located  
+36.	    l = len(path)  
+37.	    for i in range(0, l):  
+38.	        if path[l - 1 - i] == '\\':       # Find the last \  
+39.	            end = l - i  
+40.	            break  
+41.	  
+42.	    self_path = path[0:end]              # Get the path of file  
+43.	  
+44.	    if my_format == 'nii':                                  # chose which format to save  
+45.	        sitk.WriteImage(img, self_path + 'result.nii')      # save the file named result in the same path  
+46.	        print('format_conv')                                # Tell the user function worked successfully  
+47.	    elif my_format == 'nrrd':  
+48.	        sitk.WriteImage(img, self_path + 'result.nrrd')  
+49.	        print('format_conv')  
+50.	    else:  
+51.	        print('Sorry, We do not support this format.')   # If there is an unexpected format, inform the error  
+52.	  
+53.	  
+54.	''''' Test function '''  
+55.	path = "D:\PythonCode\zx\src\PATIENT_DICOM.mhd"     # Input path parameters  
+56.	my_format1 = "nii"              # Input format parameters  
+57.	format_conv(path, my_format1)   # Call function  
+58.	  
+59.	my_format2 = "nrrd"             # Try another format  
+60.	format_conv(path, my_format2)  
+61.	  
+62.	my_format3 = "txt"              # Try false format  
+63.	format_conv(path, my_format3)  
+```
+
+
+
+Result:
+
+![6](C:\Users\A\Desktop\app\06.jpg)
+
+
+##Chapter 4 Image Filtering
+
+###4.1 Image Enhancement
+
+Image enhancement is the process of adjusting digital images so that the results are more suitable for display or further image analysis. For example, you can remove noise, sharpen, or brighten an image, making it easier to identify key features.
+
+Gray Scale Dilate
+
+This method increases the contrast of the image by mapping the values of the input intensity image to new values that saturated at low and high intensities of input data.
+
+Adaptive Histogram Equalization
+
+This method performs contrast-limited adaptive histogram equalization. Unlike histogram equalization, it operates on small data regions rather than the entire image. Each region’s contrast is enhanced so that the histogram of each output region approximately matches the specified histogram (uniform distribution by default). The contrast enhancement can be limited in order to avoid amplifying the noise which might be present in the image.
+
+
+Laplace Sharpening
+
+Sharpening filter is used to highlight fine detail in an image or to enhance detail that has been blurred. Sharpening is a process to find the difference by the neighborhood, done by spatial differentiation. 
+
+Resource code：
+
+
+```
+1.    #!/usr/bin/env python  
+2.	# -*- coding: UTF-8 -*-  
+3.	""" 
+4.	Script Name   : itkImageEnhancement 
+5.	Author        : ZengXiao 
+6.	Created       : 2018/4/20 
+7.	Version       : 1.0 
+8.	Description   : 
+9.	PURPOSE： 
+10.	    Enhance images with the function of SimpleITK 
+11.	 
+12.	INPUTS: 
+13.	    path: The path of the file which to be converted. 
+14.	        Type of data: str 
+15.	    my_method: The methods of Image Enhancement 
+16.	        Type of data: str 
+17.	 
+18.	method: 
+19.	    GSD: Gray scale Dilate 
+20.	    AHE: Adaptive Histogram Equalization 
+21.	    LS : Laplace Sharpening 
+22.	 
+23.	RETURNED VALUE: 
+24.	    The enhanced image 
+25.	 
+26.	"""  
+27.	import SimpleITK as sitk  
+28.	  
+29.	  
+30.	def itkImageEnhancement(path, my_method):  
+31.	    # Define function itkImageEnhancement  
+32.	    img = sitk.ReadImage(path)                  # Call SimpleITK to read the image  
+33.	    result = [];  
+34.	  
+35.	    # img = sitk.HistogramMatching(img1, img2)  # Histogram Matching error: img can not be args  
+36.	  
+37.	    if my_method == 'GSD':                      # chose the method of enhancement  
+38.	        result = sitk.GrayscaleDilate(img)      # save the file named result in the same path  
+39.	        print('Gray Scale Dilate')              # Tell the user function worked successfully  
+40.	    elif my_method == 'AHE':  
+41.	        result = sitk.AdaptiveHistogramEqualization(img)  
+42.	        print('Adaptive Histogram Equalization')  
+43.	    elif my_method == 'LS':  
+44.	        result = sitk.LaplacianSharpening(img)  
+45.	        print('Laplace Sharpening')  
+46.	    else:  
+47.	        print('Error')   # Return an error  
+48.	  
+49.	    return result  
+50.	  
+51.	  
+52.	''''' Test function '''  
+53.	path = "D:/PythonCode/zx/src/a.dcm"            # Input path parameters  
+54.	my_method = "AHE"                              # Method  
+55.	image = itkImageEnhancement(path, my_method)   # Call function  
+56.	  
+57.	my_method = "zx"  
+58.	image = itkImageEnhancement(path, my_method)   # Try incorrect method  
+```
+
+
+Result:
+
+![7](C:\Users\A\Desktop\app\07.jpg)
+
+
+###4.2 Edge Filtering
+
+
+Edge detection includes a variety of mathematical methods that aim at identifying points in a digital image at which the image brightness changes sharply or, more formally, has discontinuities. The points at which image brightness changes sharply are typically organized into a set of curved line segments termed edges.
+
+Laplacian of the Gaussian
+
+Computes the Magnitude of the Gradient of an image by convolution with the first derivative of a Gaussian.
+
+Finite difference method
+Computes the gradient magnitude of an image region at each pixel with a simple finite difference method.
+
+Resource code:
+
+```
+1.    """ 
+2.	 Script Name   : itkImageEdgeFiltering 
+3.	 Author        : Helin Yang 
+4.	 Created       : 2018/4/19 
+5.	 Version       : 3.0 
+6.	 Description   : 
+7.	   PURPOSE     : Compute the edge of the image  
+8.	   INPUTS      : 
+9.	   - image_arr : The array of the image which to be converted. 
+10.	   - method    : 
+11.	     - Gass    : Computes the Magnitude of the Gradient of an image by convolution with the first derivative of a Gaussian. 
+12.	     - Grad    : Computes the gradient magnitude of an image region at each pixel with a simple finite difference method. 
+13.	   OUTPUT      : The edge of the image 
+14.	"""  
+15.	import SimpleITK as sitk  
+16.	  
+17.	def itkImageEdgeFiltering(image_arr,method='Grad'):  
+18.	  
+19.	    if method == 'Gass':  
+20.	        sitk.GradientMagnitudeRecursiveGaussian(image_arr)  
+21.	        print('Gradient Magnitude Recursive Gaussian')  
+22.	    elif method == 'Grad':  
+23.	        sitk.GradientMagnitude(image_arr)  
+24.	        print('Gradient Magnitude')  
+25.	    else:  
+26.	        print('Error')  
+27.	  
+28.	  
+29.	  
+30.	# An example  
+31.	# Please don't forget to import those modules as follows  
+32.	""" 
+33.	import itkImageEdgeFiltering 
+34.	import SimpleITK as sitk 
+35.	image = sitk.ReadImage('E:\IMAGE-BME\yanghelin\PATIENT_DICOM.mhd') 
+36.	image_new = itkImageEdgeFiltering.itkImageEdgeFiltering (image,'Gass') 
+37.	sitk.WriteImage( image_new ,.\PATIENT_DICOM_new.mhd) 
+38.	"""  
+```
+
+Result:
+
+![8](C:\Users\A\Desktop\app\08.jpg)
+
+
+###4.3 Image Smoothing
+
+Image Smoothing is often used to reduce noise within an image or to produce a less pixelated image. Smoothing is also usually based on a single value representing the image, such as the average value of the image or the middle (median) value.
+
+Gaussian blur
+
+Gaussian blur (also known as Gaussian smoothing) is the result of blurring an image by a Gaussian function. It is a widely used effect in graphics software, typically to reduce image noise and reduce detail.
+
+Binomial blur
+
+Binomial blur works by repeating a 5x5 or 3x3 kernel based on pascals triangle multiple times to blur the image. With a variance above 1 the result is very close to a true Gaussian blur and much faster (for variance below ~30).
+
+Resource code:
+
+
+```
+1.    """ 
+2.	 Script Name   : itkImageSmoothing 
+3.	 Author        : Boyce_Tian 
+4.	 Created       : 2018/4/19 
+5.	 Version       : 2.0 
+6.	 Description   : 
+7.	   PURPOSE     : Serving several ways to smooth the image 
+8.	   INPUTS      : 
+9.	   - image_arr : The array of the image you want to smooth. 
+10.	   - type_str  : 
+11.	     - DGauss  : Smooth image by function sitk.DiscreteGaussian() 
+12.	     - Blur    : Smooth image by function sitk.BinomialBlur(); 
+13.	     - RGauss  : Smooth image by function sitk.RecursiveGaussian(); 
+14.	   OUTPUT      : 
+15.	   - im_new    : An image as the result of smoothing. 
+16.	"""  
+17.	  
+18.	import SimpleITK as sitk  
+19.	  
+20.	def itkImageSmoothing(Im_arr , type_str):  
+21.	  
+22.	    # define the three ways  
+23.	    func_1 = 'Discrete Gaussian'  
+24.	    func_2 = 'Binomial Blurring'  
+25.	    func_3 = 'Recursive Gaussian'  
+26.	  
+27.	    #get an image from the array input  
+28.	    image = sitk.GetImageFromArray(Im_arr)  
+29.	  
+30.	    # find out the way to process the image according to type_str  
+31.	    # smooth the image  
+32.	    if type_str == func_1:  
+33.	  
+34.	        im_new = sitk.DiscreteGaussian(image)  
+35.	  
+36.	    elif type_str == func_2:  
+37.	  
+38.	        im_new = sitk.BinomialBlur(image)  
+39.	  
+40.	    elif type_str == func_3:  
+41.	  
+42.	        im_new = sitk.RecursiveGaussian(image)  
+43.	  
+44.	    else:  
+45.	        print('Please check your spelling,'  
+46.	              'and try again.')  
+47.	  
+48.	    return im_new  
+49.	  
+50.	  
+51.	# an example of using the function  
+52.	# smooth an image by the 'Discrete Gaussian' and save the output  
+53.	if __name__ == '__main__':  
+54.	    impath = './src_image/CT159.dcm'  
+55.	    im= sitk.ReadImage(impath)  
+56.	    image_arr = sitk.GetArrayFromImage(im)  
+57.	    image_new=itkImageSmoothing(image_arr ,'Discrete Gaussian')  
+58.	    sitk.WriteImage(image_new,'./src_image/haha.dcm')  
+```
+
+
+Result:
+
+
+![9](C:\Users\A\Desktop\app\09.jpg)
+
+
+
+###4.4 Edge-Preserved Smoothing
+
+Edge-preserving smoothing is an image processing technique that smooths away textures whilst retaining sharp edges. Examples are the Bilateral filter, the Guided filter and Anisotropic diffusion. When we need to preserve edge information and at the same time preserve the edges, we often use edge-preserved smoothing.
+
+Bilateral Image Filter
+
+A bilateral filter is a non-linear, edge-preserving, and noise-reducing smoothing filter for images. It replaces the intensity of each pixel with a weighted average of intensity values from nearby pixels. This weight can be based on a Gaussian distribution. Crucially, the weights depend not only on Euclidean distance of pixels, but also on the radiometric differences. This preserves sharp edges.
+
+Guided filter
+
+Derived from a local linear model, the guided filter computes the filtering output by considering the content of a guidance image, which can be the input image itself or another different image. The guided filter can be used as an edge-preserving smoothing operator like the popular bilateral filter, but has better behaviors near edges.
+
+Anisotropic diffusion
+
+In image processing and computer vision, anisotropic diffusion, also called Perona–Malik diffusion, is a technique aiming at reducing image noise without removing significant parts of the image content, typically edges, lines or other details that are important for the interpretation of the image.
+
+
+Resource code:
+
+```
+1.    """ 
+2.	Script Name   : itkEdgePreservedSmoothing 
+3.	Author        : Han 
+4.	Created       : 2018/5/3 
+5.	Version       : 1.1 
+6.	Description   : 
+7.	  PURPOSE     : This is a function that smooth image with edge preserved 
+8.	  INPUTS      : 
+9.	  - im_arr    : Im_arr is the array of the image 
+10.	                Type of data: ndarray 
+11.	  - type_str  : the type of edge-preserved smoothing that you want to process 
+12.	                Type of data: str 
+13.	                'B'= 'BilateralImageFilter' 
+14.	                'MC' = 'MinMaxCurvatureFlowImageFilter' 
+15.	                'CF' = 'CurvatureFlowImageFilter' 
+16.	                'CAD' = 'CurvatureAnisotropicDiffusionImageFilter' 
+17.	                'GAD' = 'GradientAnisotropicDiffusionImageFilter' 
+18.	 
+19.	   OUTPUTS    : 
+20.	   - im_new   : Image 
+21.	"""  
+22.	  
+23.	  
+24.	import SimpleITK as sitk  
+25.	  
+26.	  
+27.	def itkEdgePreservedSmoothing(im_arr, type_str):  
+28.	  
+29.	    func_1 = 'B'  
+30.	    func_2 = 'MC'  
+31.	    func_3 = 'CF'  
+32.	    func_4 = 'CAD'  
+33.	    func_5 = 'GAD'  
+34.	  
+35.	    # get an image from the array input  
+36.	  
+37.	    image = sitk.GetImageFromArray(im_arr)  
+38.	    image = sitk.Cast(image, sitk.sitkFloat32)  
+39.	  
+40.	    # find out the way to process the image according to type_str  
+41.	    # smooth the image  
+42.	    if type_str == func_1:  
+43.	  
+44.	        im_new = sitk.Bilateral(image)  
+45.	  
+46.	    elif type_str == func_2:  
+47.	  
+48.	        im_new = sitk.MinMaxCurvatureFlow(image)  
+49.	  
+50.	    elif type_str == func_3:  
+51.	  
+52.	        im_new = sitk.CurvatureFlow(image)  
+53.	  
+54.	    elif type_str == func_4:  
+55.	  
+56.	        im_new = sitk.CurvatureAnisotropicDiffusion(image)  
+57.	  
+58.	    elif type_str == func_5:  
+59.	  
+60.	        im_new = sitk.GradientAnisotropicDiffusion(image)  
+61.	  
+62.	    else:  
+63.	        print('Please check your spelling,'  
+64.	              'and try again.')  
+65.	    return im_new  
+66.	  
+67.	  
+68.	# an example of using the function  
+69.	if __name__ == '__main__':  
+70.	  
+71.	    impath = './src_image/CT159.dcm'  
+72.	    image = sitk.ReadImage(impath)  
+73.	    print(image.GetDimension(), image.GetPixelID(), image.GetPixelIDValue(), image.GetSize())  
+74.	    image_arr = sitk.GetArrayFromImage(image)  
+75.	    image_new = itkEdgePreservedSmoothing(image_arr, 'GAD')  
+76.	    print(image_new.GetDimension(), image_new.GetPixelID(), image_new.GetPixelIDValue(), image_new.GetSize())  
+77.	    image_test = sitk.Cast(image_new, sitk.sitkInt16)  
+78.	    print(image_test.GetDimension(), image_test.GetPixelID(), image_test.GetPixelIDValue(), image_test.GetSize())  
+79.	    sitk.WriteImage(image_test, './src_image/yi.dcm')  
+
+```
+
+
+##Chapter 5 Image segmentation
+
+
+
+Image segmentation refers to the process of subdividing a digital image into multiple image sub-regions (a collection of pixels). The purpose of image segmentation is to simplify or change the representation of the image, making the image easier to understand and analyze. For medical images, the segmentation area usually corresponds to a specific anatomical structure, such as the brain, heart, and lesions. Medical image segmentation can also be seen as extracting an anatomical structure of interest from an image.
+
+Medical image segmentation is commonly used in clinical practice for segmentation of bones, segmentation of blood vessels, and segmentation of internal organs. Common methods include Region Growing, Watershed, Level Set, and Fuzzy Connectedness.
+
+The code for segmentation of medical images using Region Growing is as follows：
+
+
+```
+def itkRegionGrow(im_arr, type_str, seedlist, lower=0, upper=1):
+
+    func_1 = 'CT'
+    func_2 = 'CC'
+
+    # get an image from the array input
+    image = itkEdgePreservedSmoothing.itkEdgePreservedSmoothing(im_arr, 'CF')
+    image = sitk.GetImageFromArray(im_arr)
+    image = sitk.Cast(image, sitk.sitkFloat32)
+
+    # find out the way to process the image according to type_str
+    if type_str == func_1:
+        im_new = sitk.ConnectedThreshold(image, seedlist, lower, upper)
+
+    elif type_str == func_2:
+        im_new = sitk.ConfidenceConnected(image, seedlist)
+    
+    else:
+        print('Please check your spelling,'
+              'and try again.')
+    return im_new
+```
+
+
+Among them, func_1 and func_2 are two types of Region Growing, respectively, ConnectedThreshold and ConfidenceConnected, and the appropriate type can be used for image segmentation.
+
+The code for image segmentation using Fuzzy Connectedness is as follows:
+
+
+```
+def itkVectorFuzzyConnectednessImageFilter(path, seedList, iterations=4, multiplier=4.5, radius=1, replaceValue=1):
+    img = sitk.GetArrayFromImage(sitk.ReadImage(path))
+    result = sitk.VectorConfidenceConnected(img, seedList, iterations, multiplier, radius, replaceValue)
+    return result
+```
+
+
+
+Use Level Set to segment images of 3D medical images (such as CT images). The code is as follows:
+
+
+```
+def itkImageLevelSetSegmentation(Im_arr, type_str, seedlist=0):
+
+    # define the six way
+    func_1 = 'SD'
+    func_2 = 'GAC'
+    func_3 = 'TH'
+    func_4 = 'FA'
+    func_5 = 'FAB'
+    func_6 = 'LP'
+
+    # get an image from the array input
+    image = sitk.GetImageFromArray(Im_arr)
+
+    # find out the way to process the image according to type_str
+    # smooth the image
+    if type_str == func_1:
+        image = sitk.Cast(image,sitk.sitkFloat32)
+        image_pre=sitk.CannyEdgeDetection(image)
+        im_new = sitk.ShapeDetectionLevelSet(image,image_pre)
+
+    elif type_str == func_2:
+        seg = itkRegionGrow.itkRegionGrow(Im_arr, 'CC', seedlist)
+        init_ls = sitk.SignedMaurerDistanceMap(seg, insideIsPositive=True, useImageSpacing=True)
+        im_new = sitk.GeodesicActiveContourLevelSet(init_ls, sitk.Cast(image, sitk.sitkFloat32))
+
+    elif type_str == func_3:
+        seg = itkRegionGrow.itkRegionGrow(Im_arr, 'CC', seedlist)
+        stats = sitk.LabelStatisticsImageFilter()
+        stats.Execute(image, seg)
+        lower_threshold = stats.GetMean(1)-1.5*stats.GetSigma(1)
+        upper_threshold = stats.GetMean(1)+1.5*stats.GetSigma(1)
+        init_ls = sitk.SignedMaurerDistanceMap(seg, insideIsPositive=True, useImageSpacing=True)
+        im_new = sitk.ThresholdSegmentationLevelSet(init_ls,sitk.Cast(image,sitk.sitkFloat32), lower_threshold, upper_threshold)
+
+    elif type_str == func_4:
+        im_new = sitk.FastMarching(image, seedlist)
+
+    elif type_str == func_5:
+        im_new = sitk.FastMarchingBase(image, seedlist)
+
+    elif type_str == func_6:
+        seg = itkRegionGrow.itkRegionGrow(Im_arr, 'CC', seedlist)
+        init_ls = sitk.SignedMaurerDistanceMap(seg, insideIsPositive=True, useImageSpacing=True)
+        im_new = sitk.LaplacianSegmentationLevelSet(init_ls, sitk.Cast(image, sitk.sitkFloat32))
+
+    else:
+
+        print('Please check your spelling,'
+              'and try again.')
+
+    return im_new
+
+```
+
+Six types of Level Sets are defined. As with the previous methods, the input is a matrix containing image information, and the output is also a matrix containing image information.
+
+
+The following is the original picture:
+
+
+<div align=center>![9](C:\Users\A\Desktop\app\10.jpg )
+
+
+The following is a picture after the image has been split:
+
+
+<div align=center>![10](C:\Users\A\Desktop\app\11.jpg)
+
+<div align=left>
+##Chapter 6：Image registration
+
+###6.1 Introduction
+
+Image registration is the process of transforming different sets of data into one coordinate system. Data may be multiple photographs, data from different sensors, times, depths, or viewpoints. Image registration or image alignment algorithms can be classified into intensity-based and feature-based. One of the images is referred to as the moving or source and the others are referred to as the target, fixed or sensed images. Image registration involves spatially transforming the source/moving image(s) to align with the target image. The reference frame in the target image is stationary, while the other datasets are transformed to match to the target.
+
+There are four main elements in the process of registration: 
+
+* Spatial Transform
+
+* Similarity Metric
+
+* Optimizer
+
+* Interpolator
+
+
+<div align=center>![12](C:\Users\A\Desktop\app\12.jpg )
+
+<div align=left>
+We present a function based on simpletik that can be called as follows:
+
+* Spatial Transform
+
+  * Rigid transform（Euler）：It's a kind of rigid transform which only contains translation and rotation. And it can be used to registrate head CT and MRI images.
+
+  * BSpline transform：one of a kind of nonlinear transform which can be used to registrate images from different people.
+  *	Similarity transform：one of a kind of linear transform. 
+  * 	Affine transform：one of a kind of linear transform which can be used to registrate chest images.
+
+
+*  Similarity Metric
+
+   *   to measure similarity between two images, in order to know whether have aligned 
+   *	Mutual Information: Used to register different image modes, such as CT and MR
+   *	Mean Squared Difference: Used to compare grayscale matching
+   *	Normalized Cross Correlation: Used to register the same image mode, such as CT and CT
+
+
+*   Optimizer
+
+   *   The optimal spatial transformation can be skillfully found, so that the similarity measure between the moving image and the fixed image is maximized.
+   *	Conjugate Gradient Descendant
+   *	LBFGSB 
+   *	Powell 
+   *	Gradient Descendant
+
+
+*   Interpolator
+   *   Used to generate a transformed moving image.
+   *	Linear Interpolation
+   *	Nearest Neighbor Interpolation 
+   *	B-Spline Interpolation
+
+
+
+###6.2 Two-dimensional registration function
+
+```
+1.    """  
+2.	Script Name   : itk2DImageRegistration  
+3.	Author        :  
+4.	Created       : 2018/5/31  
+5.	Version       : 1.0  
+6.	Description   :  
+7.	  PURPOSE     :  
+8.	  INPUTS      :  
+9.	  - Im_arr1   : fixed_image  
+10.	                Type of data: not ndarray  
+11.	  - Im_arr2   : moving_image  
+12.	                Type of data: not ndarray  
+13.	  - trans_type         : Spatial Transform algorithms  
+14.	                        'Euler'       :  'Euler2DTransform'  
+15.	                        'BSpline'     :  'BSplineTransformInitializer'  
+16.	                        'Similarity'  :  'Similarity2DTransform'  
+17.	                        'Affine'      :  'AffineTransform'  
+18.	  - metric_type        : Similarity Metric algorithms  
+19.	                        'mutual'      :  'SetMetricAsMattesMutualInformation'  
+20.	                        'mean'        :  'SetMetricAsMeanSquares'  
+21.	                        'correlation' :  'SetMetricAsCorrelation'  
+22.	  - optimizer_type     : Optimizer algorithms  
+23.	                        'GradientLine':  'SetOptimizerAsConjugateGradientLineSearch'  
+24.	                        'LBFGSB'      :  'SetOptimizerAsLBFGSB'  
+25.	                        'Powell'      :  'SetOptimizerAsPowell'  
+26.	                        'Gradient'    :  'SetOptimizerAsGradientDescent'  
+27.	  - interpolator_type  : Interpolator algorithms  
+28.	                        'Linear'      :  'sitkLinear'  
+29.	                        'Neighbor'    :  'sitkNearestNeighbor'  
+30.	                        'BSpline'     :  'sitkBSpline'  
+31.	   OUTPUTS    :  
+32.	   - im_new   : Image  
+33.	  
+34.	"""  
+35.	  
+36.	import SimpleITK as sitk  
+37.	  
+38.	def itk2DImageRegistration(Im_arr1,Im_arr2,trans_type,metric_type,interpolator_type,optimizer_type):  
+39.	    # define the transform way  
+40.	    tfunc_1 = 'Euler'  
+41.	    tfunc_2 = 'BSpline'  
+42.	    tfunc_3 = 'Similarity'  
+43.	    tfunc_4 = 'Affine'  
+44.	  
+45.	    mfunc1 = 'mutual'  
+46.	    mfunc2 = 'mean'  
+47.	    mfunc3 = 'correlation'  
+48.	  
+49.	    ifunc1 = 'Linear'  
+50.	    ifunc2 = 'Neighbor'  
+51.	    ifunc3 = 'BSpline'  
+52.	  
+53.	    ofunc1 = 'GradientLine'  
+54.	    ofunc2 = 'LBFGSB'  
+55.	    ofunc3 = 'Powell'  
+56.	    ofunc4 = 'Gradient'  
+57.	  
+58.	  
+59.	  
+60.	    # get an image from the array input  
+61.	    fixed_image = sitk.GetImageFromArray(Im_arr1,)  
+62.	    fixed_image = sitk.Cast(fixed_image, sitk.sitkFloat32)  
+63.	    moving_image = sitk.GetImageFromArray(Im_arr2)  
+64.	    moving_image = sitk.Cast(moving_image, sitk.sitkFloat32)  
+65.	  
+66.	    # Spatial Transform algorithm depend on tfunc_ which are Euler,BSpline,Similarity,Affine  
+67.	    if trans_type == tfunc_1:  
+68.	        transform = sitk.CenteredTransformInitializer(fixed_image,  
+69.	                                                      moving_image,  
+70.	                                                      sitk.Euler2DTransform(),  
+71.	                                                      sitk.CenteredTransformInitializerFilter.GEOMETRY)  
+72.	  
+73.	    elif trans_type == tfunc_2:  
+74.	        transform = sitk.BSplineTransformInitializer(fixed_image, [fixed_image.GetDimension(), 8])  
+75.	  
+76.	    elif trans_type == tfunc_3:  
+77.	        transform = sitk.CenteredTransformInitializer(fixed_image,  
+78.	                                                      moving_image,  
+79.	                                                      sitk.Similarity2DTransform(),  
+80.	                                                      sitk.CenteredTransformInitializerFilter.GEOMETRY)  
+81.	  
+82.	    elif trans_type == tfunc_4:  
+83.	        transform = sitk.CenteredTransformInitializer(fixed_image,  
+84.	                                                      moving_image,  
+85.	                                                      sitk.AffineTransform(fixed_image.GetDimension()),  
+86.	                                                      sitk.CenteredTransformInitializerFilter.GEOMETRY)  
+87.	  
+88.	    # Similarity Metric algorithms depend on mfunc which are mutual information, mean squares, correlation  
+89.	    registration_method = sitk.ImageRegistrationMethod()  
+90.	  
+91.	    if metric_type == mfunc1 :  
+92.	        registration_method.SetMetricAsMattesMutualInformation(numberOfHistogramBins=50)  
+93.	  
+94.	    elif metric_type == mfunc2 :  
+95.	        registration_method.SetMetricAsMeanSquares()  
+96.	  
+97.	    elif metric_type == mfunc3 :  
+98.	        registration_method.SetMetricAsCorrelation()  
+99.	  
+100.	    registration_method.SetMetricSamplingStrategy(registration_method.RANDOM)  
+101.	    registration_method.SetMetricSamplingPercentage(0.01)  
+102.	  
+103.	    #Interpolator algorithm depends on ifunc which are Linear, Nearest neighbor, BSpline  
+104.	    if interpolator_type == ifunc1:  
+105.	        registration_method.SetInterpolator(sitk.sitkLinear)  
+106.	  
+107.	    elif interpolator_type == ifunc2:  
+108.	        registration_method.SetInterpolator(sitk.sitkNearestNeighbor)  
+109.	  
+110.	    elif interpolator_type == ifunc3:  
+111.	        registration_method.SetInterpolator(sitk.sitkBSpline)  
+112.	  
+113.	    # Optimizer algorithms depends on ofunc which are Conjugate Gradient Line Search, LBFGSB, Powell, GradientDescen  
+114.	    if optimizer_type == ofunc1:  
+115.	        registration_method.SetOptimizerAsConjugateGradientLineSearch(learningRate=1.0, numberOfIterations=70)  
+116.	  
+117.	    elif optimizer_type == ofunc2:  
+118.	        registration_method.SetOptimizerAsLBFGSB()  
+119.	  
+120.	    elif optimizer_type == ofunc3:  
+121.	        registration_method.SetOptimizerAsPowell()  
+122.	  
+123.	    elif optimizer_type == ofunc4:  
+124.	        registration_method.SetOptimizerAsGradientDescent(learningRate=1.0, numberOfIterations=60)  
+125.	  
+126.	    registration_method.SetOptimizerScalesFromPhysicalShift()  
+127.	  
+128.	    registration_method.SetInitialTransform(transform)  
+129.	    registration_method.Execute(fixed_image, moving_image)  
+130.	  
+131.	    return transform  
+132.	  
+133.	"""  
+134.	  When the.py file is run directly, the code block under if __name__ = '__main__' is run.  
+135.	  When the.py file is imported as a module, the code block under if __name__ = '__main__' is not run.  
+136.	"""  
+137.	#  if __name__ == '__main__':  
+138.	  
+139.	#input, preprocessing and registration  
+```
+
+
+The function contains an example:
+
+Call the function：
+
+
+```
+1.    path1 = 'E:/biomedicalIMAGE/MedImg_Py_Library-master/CT_Head_Patient1.mhd'  
+2.	fixed_im = sitk.ReadImage(path1)  
+3.	fixed_image_arr = sitk.GetArrayFromImage(fixed_im)  
+4.	path2 = 'E:/biomedicalIMAGE/MedImg_Py_Library-master/MR_Head_Patient1.mhd'  
+5.	moving_im = sitk.ReadImage(path2)  
+6.	moving_image_arr = sitk.GetArrayFromImage(moving_im)  
+7.	transform = itk2DImageRegistration( fixed_image_arr, moving_image_arr, 'BSpline', 'correlation', 'BSpline', 'GradientLine')  
+Resample：Map the transformed floating image to a fixed image space to save the registration result
+1.	#resample and Rescale Intensity  
+2.	resampler = sitk.ResampleImageFilter()  
+3.	resampler.SetTransform(transform)  
+4.	resampler.SetReferenceImage(fixed_im)  
+5.	out = resampler.Execute(moving_im)  
+6.	img0 = sitk.Cast(sitk.RescaleIntensity(moving_im), sitk.sitkUInt8)  
+7.	img1 = sitk.Cast(sitk.RescaleIntensity(fixed_im), sitk.sitkUInt8)  
+8.	img2 = sitk.Cast(sitk.RescaleIntensity(out), sitk.sitkUInt8)  
+9.	img3 = sitk.Cast(sitk.RescaleIntensity(img1 / 2. + img2 / 2.), sitk.sitkUInt8)  
+10.	  
+11.	# combine these three scalar images into a multicomponent image named img_out  
+12.	img_out = sitk.Compose(img1, img2, img3)  
+13.	sitk.WriteImage(img_out, './src_image/re_Head_Patient1.mhd')  
+```
+
+
+
+###6.3 Three-dimensional registration function
+
+
+```
+1.    #!/usr/bin/env python  
+2.	# -*- coding: UTF-8 -*-  
+3.	"""  
+4.	Script Name   : itk3DImageRegistration  
+5.	Author        : ZengXiao  
+6.	Created       : 2018/5/29  
+7.	Version       : 2.0  
+8.	Description   :  
+9.	  PURPOSE     :  
+10.	  INPUTS      : 3-D image registration  
+11.	  - fix       : Path of fixed image  
+12.	                Type of data: str  
+13.	  - move      : Path of moving image  
+14.	                Type of data: str  
+15.	  - transform : Spatial Transform  
+16.	                Type of data: str  
+17.	  
+18.	                "euler": rigid transform  
+19.	                "similarity": similarity transform  
+20.	                "affine": affine transform  
+21.	                "nonlinear": affine transform  
+22.	  
+23.	  - metric    : Similarity Metric  
+24.	                Type of data: str  
+25.	  
+26.	                "information": Mutual Information  
+27.	                "ANTS": Unknown  
+28.	                "correlation": Normalized Cross Correlation  
+29.	                "Hinformation": Joint Histogram Mutual Information  
+30.	                "MeanSquares": Mean Squared Difference  
+31.	  
+32.	  - interpolator: Optimizer  
+33.	                  Type of data: str  
+34.	  
+35.	                  "linear": Linear Interpolation  
+36.	                  "nearest": Nearest Neighbor Interpolation  
+37.	                  "BSpline": B-Spline Interpolation  
+38.	  
+39.	  - optimizer  : Substitution value  
+40.	                 Type of data: int  
+41.	  
+42.	                 "AsGradient": Gradient Descendant  
+43.	                 "StepGradient": Conjugate Gradient Descendant  
+44.	                 "LBFGSB": LBFGSB  
+45.	                 "LBFGS2": LBFGS2  
+46.	                 "Exhaustive": Exhaustive  
+47.	                 "Amoeba": Amoeba  
+48.	                 "Weights": Weights  
+49.	                 "Powell": Powell  
+50.	  
+51.	   OUTPUTS    : None  
+52.	  
+53.	"""  
+54.	import SimpleITK as sitk  
+55.	import os  
+56.	  
+57.	  
+58.	def itk3DImageRegistration(fix, move, transform, metric, interpolator, optimizer):  
+59.	    switch_SetTransform = {  
+60.	        "euler": sitk.Euler3DTransform(fixed_image.GetDimension()),  
+61.	        "similarity": sitk.Similarity3DTransform(fixed_image.GetDimension()),  
+62.	        "affine": sitk.AffineTransform(fixed_image.GetDimension()),  
+63.	        "nonlinear": sitk.BSplineTransform(fixed_image.GetDimension()),  
+64.	    }  
+65.	    switch_metric = {  
+66.	        "information": registration_method.SetMetricAsMattesMutualInformation(numberOfHistogramBins=50),  
+67.	        "ANTS": registration_method.SetMetricAsANTSNeighborhoodCorrelation(radius=50),  
+68.	        "correlation": registration_method.SetMetricAsCorrelation(),  
+69.	        "Hinformation": registration_method.SetMetricAsJointHistogramMutualInformation(numberOfHistogramBins=20,  
+70.	                                                                                       varianceForJointPDFSmoothing=1.5),  
+71.	        "MeanSquares": registration_method.SetMetricAsMeanSquares(),  
+72.	    }  
+73.	    switch_interpolator = {  
+74.	        "linear": sitk.sitkLinear,  
+75.	        "nearest": sitk.sitkNearestNeighbor,  
+76.	        "BSpline": sitk.sitkBSpline,  
+77.	    }  
+78.	    switch_optimizer = {  
+79.	        "AsGradient": registration_method.SetOptimizerAsGradientDescent(learningRate=1.0, numberOfIterations=100,  
+80.	                                                                        convergenceMinimumValue=1e-6,  
+81.	                                                                        convergenceWindowSize=10),  
+82.	        "StepGradient": registration_method.SetOptimizerAsRegularStepGradientDescent(relaxationFactor=0.5,  
+83.	                                                                                     gradientMagnitudeTolerance=1e-4,  
+84.	                                                                                     maximumStepSizeInPhysicalUnits=0.0),  
+85.	        "LBFGSB": registration_method.SetOptimizerAsLBFGSB(gradientConvergenceTolerance=1e-5, numberOfIterations=500,  
+86.	                                                           maximumNumberOfCorrections=5,  
+87.	                                                           maximumNumberOfFunctionEvaluations=2000,  
+88.	                                                           maximumStepSizeInPhysicalUnits=0.0),  
+89.	        "LBFGS2": registration_method.SetOptimizerAsLBFGS2(numberOfIterations=0, hessianApproximateAccuracy=6,  
+90.	                                                           deltaConvergenceDistance=0, deltaConvergenceTolerance=1e-5,  
+91.	                                                           lineSearchMaximumEvaluations=40, lineSearchMinimumStep=1e-20,  
+92.	                                                           lineSearchMaximumStep=1e20, lineSearchAccuracy=1e-4),  
+93.	        "Exhaustive": registration_method.SetOptimizerAsExhaustive(stepLength=1.0),  
+94.	        "Amoeba": registration_method.SetOptimizerAsAmoeba(parametersConvergenceTolerance=1e-8,  
+95.	                                                           functionConvergenceTolerance=1e-4),  
+96.	        "Weights": registration_method.SetOptimizerWeights(),  
+97.	        "Powell": registration_method.SetOptimizerAsPowell(numberOfIterations=100, maximumLineIterations=100,  
+98.	                                                           stepLength=1,  
+99.	                                                           stepTolerance=1e-6, valueTolerance=1e-6),  
+100.	    }  
+101.	    # read the images and casting the pixel type to Float32 (or Float64)  
+102.	    fixed_image = sitk.ReadImage(fix, sitk.sitkFloat32)  
+103.	    moving_image = sitk.ReadImage(move, sitk.sitkFloat32)  
+104.	  
+105.	    # align the centers of the two volumes and set the center of rotation to the center of the fixed image.  
+106.	    initial_transform = sitk.CenteredTransformInitializer(fixed_image,  
+107.	                                                          moving_image,  
+108.	                                                          switch_SetTransform.get(transform, 'Incorrect parameter input'),  
+109.	                                                          sitk.CenteredTransformInitializerFilter.GEOMETRY)  
+110.	    moving_resampled = sitk.Resample(moving_image, fixed_image, initial_transform,  
+111.	                                     sitk.sitkLinear, 0.0, moving_image.GetPixelID())  
+112.	    registration_method = sitk.ImageRegistrationMethod()  
+113.	  
+114.	    # Similarity metric settings.  
+115.	    switch_metric.get(metric, 'Incorrect parameter input'),  
+116.	    registration_method.SetMetricSamplingStrategy(registration_method.RANDOM)  
+117.	    registration_method.SetMetricSamplingPercentage(0.01)  
+118.	  
+119.	    # Interpolator settings.  
+120.	    registration_method.SetInterpolator(switch_interpolator.get(interpolator, 'Incorrect parameter input'))  
+121.	  
+122.	    # Optimizer settings.  
+123.	    switch_optimizer.get(optimizer,'Incorrect parameter input')  
+124.	  
+125.	    registration_method.SetOptimizerScalesFromPhysicalShift()  
+126.	  
+127.	    registration_method.SetOptimizerScalesFromPhysicalShift(centralRegionRadius=5,  
+128.	                                                            smallParameterVariation=0.01)  
+129.	    # Setup for the multi-resolution framework.  
+130.	    registration_method.SetShrinkFactorsPerLevel(shrinkFactors=[4, 2, 1])  
+131.	    registration_method.SetSmoothingSigmasPerLevel(smoothingSigmas=[2, 1, 0])  
+132.	    registration_method.SmoothingSigmasAreSpecifiedInPhysicalUnitsOn()  
+133.	  
+134.	    # Don't optimize in-place, we would possibly like to run this cell multiple times.  
+135.	    registration_method.SetInitialTransform(initial_transform, inPlace=False)  
+136.	  
+137.	    final_transform = registration_method.Execute(sitk.Cast(fixed_image, sitk.sitkFloat32),  
+138.	                                                  sitk.Cast(moving_image, sitk.sitkFloat32))  
+139.	  
+140.	    # Query the registration method to see the metric value and the reason the optimization terminated.  
+141.	    print('Final metric value: {0}'.format(registration_method.GetMetricValue()))  
+142.	    print('Optimizer\'s stopping condition, {0}'.format(registration_method.GetOptimizerStopConditionDescription()))  
+143.	    sitk.WriteImage(moving_resampled, os.path.join('Output', 'D:\PythonCode\zx\src\
+```
+
+##Chapter 7：Mesh Processing
+
+
+
+The surface rendering technique is a planar image projected on a screen when a computer simulates the illumination of a light onto a mesh surface. Modern computers can implement real-time surface rendering calculations, even when the surface is rotated, translated, deformed, etc., it can be reflected on the screen in real time.
+
+
+The simple surface drawing program is as follows:
+
+```
+import vtk
+
+filename = "Liver.stl"
+
+reader = vtk.vtkSTLReader()
+reader.SetFileName(filename)
+
+mapper = vtk.vtkPolyDataMapper()
+
+mapper.SetInputConnection(reader.GetOutputPort())
+
+actor = vtk.vtkActor()
+actor.SetMapper(mapper)
+
+# Create a rendering window and renderer
+ren = vtk.vtkRenderer()
+renWin = vtk.vtkRenderWindow()
+renWin.AddRenderer(ren)
+
+# Create a renderwindowinteractor
+iren = vtk.vtkRenderWindowInteractor()
+iren.SetRenderWindow(renWin)
+
+# Assign actor to the renderer
+ren.AddActor(actor)
+
+# Enable user interface interactor
+iren.Initialize()
+renWin.Render()
+iren.Start()
+
+```
+There are many types of surface processing, including surface smoothing, mesh simplification, mesh reconstruction, surface logic operations, subdivision surfaces, and more.
+
+Subdivision surfaces are the easiest operations, the code is as follows:
+
+```
+import pymesh
+
+#get the path of the original mesh and set the path of the Subdivided mesh
+filepath="./Spleen_3D-interpolation.stl"
+filenew="./Spleen_3D-interpolation_new.stl"
+#get the original mesh
+mesh=pymesh.load_mesh(filepath)
+#subdivide the mesh
+mesh_new=pymesh.subdivide(mesh,order=3,method='simple')
+#write the subdivided mesh as a new file
+pymesh.save_mesh(filenew,mesh_new)
+
+```
+
+
+
+The effect is as follows:
+
+
+
+<div align=center>![13](C:\Users\A\Desktop\app\13.jpg )
+
+<div align=left>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
